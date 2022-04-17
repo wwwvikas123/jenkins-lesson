@@ -1,10 +1,7 @@
 pipeline {
-    agent {
-     label 'unittest'
-    }
-    environment {
-     image = docker.build("unittests:${env.BRANCH_NAME}")
-    }
+agent {
+  label 'unittest'
+}
     options {
       parallelsAlwaysFailFast()
     }
@@ -12,8 +9,12 @@ pipeline {
     stages {
 
         stage('Checkout code') { 
+            
             steps {
                 checkout scm
+                script{
+                    image = docker.build("unittests:${env.BRANCH_NAME}")
+                }
             }
             
         }        
