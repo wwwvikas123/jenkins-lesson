@@ -1,6 +1,6 @@
 pipeline {
     agent {
-        label 'unittest'
+     label 'unittest'
     }
     environment {
      image = docker.build("unittests:${env.BRANCH_NAME}")
